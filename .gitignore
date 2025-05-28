@@ -1,0 +1,12 @@
+# Ignore real env files
+GoChatbotBackend/.env
+NextJSChatbotExample/.env
+
+# Node and build artifacts
+NextJSChatbotExample/node_modules/
+NextJSChatbotExample/.next/
+GoChatbotBackend/bin/
+db_data/
+
+#db
+.env.db

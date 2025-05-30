@@ -1,0 +1,69 @@
+basePath: /api
+definitions:
+  handlers.Booking:
+    properties:
+      date:
+        description: 'format: "YYYY-MM-DD"'
+        type: string
+      room_id:
+        type: integer
+      timeslot_id:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is an API for managing room bookings.
+  title: Booking API
+  version: "1.0"
+paths:
+  /api/bookings:
+    post:
+      consumes:
+      - application/json
+      description: Add a new booking for a specific room and timeslot
+      parameters:
+      - description: Booking info
+        in: body
+        name: booking
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.Booking'
+      produces:
+      - text/plain
+      responses:
+        "201":
+          description: Booking created
+          schema:
+            type: string
+        "400":
+          description: Invalid request
+          schema:
+            type: string
+        "500":
+          description: Failed to insert booking
+          schema:
+            type: string
+      summary: Create a booking
+      tags:
+      - bookings
+  /api/rooms:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              additionalProperties: true
+              type: object
+            type: array
+        "500":
+          description: Failed to fetch rooms
+          schema:
+            type: string
+      summary: Get all rooms
+      tags:
+      - rooms
+swagger: "2.0"
